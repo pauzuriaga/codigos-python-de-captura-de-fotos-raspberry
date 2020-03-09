@@ -8,18 +8,21 @@ import base64
 import threading
 import requests
 
+print("revision: 16/12/2019")
 orden = 805
+
+global camAtras
+global camAdelante
+global tipo
+camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.2:1.0-video-index0")
+camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.3:1.0-video-index0")
 
 adelante = 26
 atras = 21
 obsadelante = 19
 obsatras = 20
 obsreg = 16
-global camAtras
-global camAdelante
-global tipo
-camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.2:1.0-video-index0")
-camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.3:1.0-video-index0")
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(atras,GPIO.IN)
 GPIO.setup(adelante,GPIO.IN)

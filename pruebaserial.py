@@ -20,7 +20,8 @@ url = 'http://179.50.12.201/transpubenza/sgcf/api/gps/trama'
 arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
-#orden=897
+print("revision: 03/12/2019")
+os.system("sudo service ntp restart")
 def Envio(datos,url,intentos):
     cont = intentos
     try:
@@ -148,7 +149,8 @@ try:
         #arduino.write(var)
         time.sleep(0.1)
         if (GPIO.input(monitor12VPin)):
-            print("encendido")            
+            #print("encendido")    
+            pass        
         else:
             print("apagado")
         while arduino.inWaiting() > 0:

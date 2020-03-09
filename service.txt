@@ -1,0 +1,12 @@
+[Unit]
+Description=script de gps
+After=multi-user.target
+
+[Service]
+ExecStart=/home/pi/transpubenza/pruebaserial.py
+Restart=always    
+Type=simple
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
