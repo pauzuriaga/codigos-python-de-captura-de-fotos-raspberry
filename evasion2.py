@@ -1,5 +1,5 @@
 #!/usr/bin/python2
-#16-12-2019
+#10/03/2020
 import RPi.GPIO as GPIO
 import cv2
 import time
@@ -9,14 +9,14 @@ import threading
 import requests
 from config import (orden)
 
-print("revision: 16/12/2019")
+print("revision: 10/03/2020")
 print(orden)
 
 global camAtras
 global camAdelante
 global tipo
 camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.2:1.0-video-index0")
-camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.3:1.0-video-index0")
+camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.3:1.0-video-index0")
 
 adelante = 26
 atras = 21
@@ -36,10 +36,11 @@ def Envio(datos,url,intentos):
     try:
         time.sleep(0.5)
         print("enviando...")
-        res = requests.post(url, json=datos, auth=('pablo', '123'))
+        res = requests.post(url, json=datos, auth=('pablo1', '123'))
         if(res.json()['status'] != "ok" and cont ==60):
             # esribir la imagen en la carpeta de no enviados
             print("el machete de jhonatan funciona")
+
         else:
             while(res.json()['status'] != "ok" and cont<60):
                 cont = cont+1

@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 # -*- coding: utf-8 -*-
-#revision: 03/12/2019
+#revision: 10/03/2020
 import serial
 import time
 import os
@@ -22,7 +22,7 @@ url = 'http://179.50.12.201/transpubenza/sgcf/api/gps/trama'
 arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
-print("revision: 03/12/2019")
+print("revision: 10/03/2020")
 os.system("sudo service ntp restart")
 
 def Envio(datos,url,intentos):
