@@ -35,14 +35,14 @@ def Envio(datos,url,intentos):
     cont = intentos
     try:
         time.sleep(0.5)
-        print("enviando...")
+        print("enviando..."+ cont)
         res = requests.post(url, json=datos, auth=('pablo1', '123'))
-        if(res.json()['status'] != "ok" and cont ==60):
+        if(res.json()['status'] != "ok" and cont ==10):
             # esribir la imagen en la carpeta de no enviados
             print("el machete de jhonatan funciona")
 
         else:
-            while(res.json()['status'] != "ok" and cont<60):
+            while(res.json()['status'] != "ok" and cont<10):
                 cont = cont+1
                 Envio(datos,url,cont)
                 #print(res.json()['status'])
