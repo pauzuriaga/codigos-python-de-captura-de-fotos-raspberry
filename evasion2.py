@@ -15,8 +15,13 @@ print(orden)
 global camAtras
 global camAdelante
 global tipo
-camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.2:1.0-video-index0")
-camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.3:1.0-video-index0")
+#lo siguiente por la version hardware de raspberry
+if(orden==897):
+    camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.2:1.0-video-index0")
+    camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.3:1.0-video-index0")
+else:
+    camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.2:1.0-video-index0")
+    camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.1.3:1.0-video-index0")
 
 adelante = 26
 atras = 21

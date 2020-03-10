@@ -23,6 +23,7 @@ arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
 print("revision: 10/03/2020")
+print("Reiniciando NTP service")
 os.system("sudo service ntp restart")
 
 def Envio(datos,url,intentos):
@@ -77,7 +78,10 @@ def fotoPiloto():
         horapiloto = time.strftime("%H-%M-%S")
         nombre = '/home/pi/transpubenza/DVR/Piloto/'+str(orden)+'_'+str(fechapiloto)+'_'+str(horapiloto)+'_piloto.png'
         print("foto piloto()")
-        cmd= 'ffmpeg -s 640x480 -i /dev/v4l/by-path/platform-3f980000.usb-usb-0:1.2:1.0-video-index0 -ss 0:0:2 -frames 1 ' + nombre
+        if orden=897:
+            cmd= 'ffmpeg -s 640x480 -i /dev/v4l/by-path/platform-3f980000.usb-usb-0:1.5:1.0-video-index0 -ss 0:0:2 -frames 1 ' + nombre
+        else:
+            cmd= 'ffmpeg -s 640x480 -i /dev/v4l/by-path/platform-3f980000.usb-usb-0:1.2:1.0-video-index0 -ss 0:0:2 -frames 1 ' + nombre
         os.system(cmd)
 
         img = cv2.imread(nombre, 0)
