@@ -7,9 +7,10 @@ import sys
 import base64
 import threading
 import requests
+from config import (orden)
 
 print("revision: 16/12/2019")
-orden = 805
+print(orden)
 
 global camAtras
 global camAdelante

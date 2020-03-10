@@ -10,7 +10,9 @@ import sys
 import cv2
 import base64
 import RPi.GPIO as GPIO
+from config import (orden)
 
+print(orden)
 monitor12VPin = 18
 
 GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
@@ -22,6 +24,7 @@ txt=''
 trama=''
 print("revision: 03/12/2019")
 os.system("sudo service ntp restart")
+
 def Envio(datos,url,intentos):
     cont = intentos
     try:
@@ -167,13 +170,12 @@ try:
                     idtrama = ''+str(carro)+str(fechatrama)+str(horatrama)
                     hora = time.strftime("%H%M%S")
                     #print(idtrama)
-                    orden=carro
                     if (GPIO.input(monitor12VPin)):
                         estadoGPS=1
                     else:
                         estadoGPS=0
                     query = {
-                    "orden": carro,
+                    "orden": orden,
                     "idTrama": idtrama,
                     "electromecanica": conteoTorniquete,
                     "adelante": conteoAdelante,
