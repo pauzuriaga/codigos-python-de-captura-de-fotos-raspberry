@@ -2,8 +2,8 @@ import cv2
 import time, os
 
 while(True):
-	print ("Para conocer los puertos escriba en consola:")
-	print ("ls /dev/v4l/by-path -lh")
+    print ("Para conocer los puertos escriba en consola:")
+    print ("ls /dev/v4l/by-path -lh")
     print ("1. 0:1.2:1.0")
     print ("2. 0:1.1.2:1.0")
     print ("3. 0:1.1.3:1.0")
