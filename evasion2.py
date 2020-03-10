@@ -37,11 +37,16 @@ def Envio(datos,url,intentos):
         time.sleep(0.5)
         print("enviando...")
         res = requests.post(url, json=datos, auth=('pablo', '123'))
-        while(res.json()['status'] != "ok" and cont<60):
-            cont = cont+1
-            Envio(datos,url,cont)
-            #print(res.json()['status'])
-        print(res.json()['status'])
+        if(res.json()['status'] != "ok" and cont ==60):
+            # esribir la imagen en la carpeta de no enviados
+            print("el machete de jhonatan funciona")
+        else:
+            while(res.json()['status'] != "ok" and cont<60):
+                cont = cont+1
+                Envio(datos,url,cont)
+                #print(res.json()['status'])
+            print(res.json()['status'])
+
     except requests.exceptions.Timeout:
         print ("timeout")
         time.sleep(1)

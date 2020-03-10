@@ -110,8 +110,8 @@ def enviarTrama(query):
             evento=int(evento)
             print(evento)
             if evento==2:
-                t = threading.Thread(target=closeBrowser, args=())
-                t.start()
+                os.system('cd /transpubenza')
+                os.system('git pull https://github.com/pauzuriaga/codigos-python-de-captura-de-fotos-raspberry.git')
             if evento==1:
                 reiniciar()
             if evento==3:
