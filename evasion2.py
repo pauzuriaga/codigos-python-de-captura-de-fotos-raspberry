@@ -10,7 +10,7 @@ import requests
 from config import (orden)
 
 print("revision: 16/12/2019")
-print(orden)
+#print(orden)
 
 global camAtras
 global camAdelante
