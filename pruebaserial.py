@@ -22,7 +22,8 @@ url = 'http://179.50.12.201/transpubenza/sgcf/api/gps/trama'
 arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
-print("revision: 10/03/2020")
+version="10/03/2020"
+print("revision: "+version)
 print("Reiniciando NTP service")
 os.system("sudo service ntp restart")
 
@@ -196,7 +197,8 @@ try:
                     "velocidad": velocidad,
                     "precision": precision,
                     "fecha": fechaServidor,
-                    "hora": hora                
+                    "hora": hora,
+                    "version": version                
                     }
                     print(fechaArd)
                     t = threading.Thread(target=enviarTrama, args=([query]))
