@@ -151,7 +151,13 @@ try:
     while True:
         fechaServidor= time.strftime("%y-%m-%d")
         fecha= time.strftime("%d-%m-%y")
-        
+        dia=time.strftime("%d")
+        print(dia)
+        if (dia=="11"):
+            print("correcto")
+            vers="ok"
+        else:
+            vers="no"
         fechatrama= time.strftime("%d%m%y")
         horatrama = time.strftime("%H%M%S")
         #var = raw_input("Introducir un Comando: ")
