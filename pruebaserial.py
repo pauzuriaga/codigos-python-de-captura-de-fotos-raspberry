@@ -22,6 +22,7 @@ url = 'http://179.50.12.201/transpubenza/sgcf/api/gps/trama'
 arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
+vers=''
 version="10-03-2020"
 print("revision: "+version)
 #comentario
@@ -80,7 +81,7 @@ def fotoPiloto():
         horapiloto = time.strftime("%H-%M-%S")
         nombre = '/home/pi/transpubenza/DVR/Piloto/'+str(orden)+'_'+str(fechapiloto)+'_'+str(horapiloto)+'_piloto.png'
         print("foto piloto()")
-        if (orden=897):
+        if (orden==897):
             cmd= 'ffmpeg -s 640x480 -i /dev/v4l/by-path/platform-3f980000.usb-usb-0:1.5:1.0-video-index0 -ss 0:0:2 -frames 1 ' + nombre
         else:
             cmd= 'ffmpeg -s 640x480 -i /dev/v4l/by-path/platform-3f980000.usb-usb-0:1.2:1.0-video-index0 -ss 0:0:2 -frames 1 ' + nombre
@@ -147,17 +148,25 @@ def enviarTrama(query):
         print("valueError inesperado:", sys.exc_info()[0])        
     return
 
+def actualizar():
+    print("Actualizando codigos")
+    os.system("cd /transpubenza")
+    os.system("git pull https://github.com/pauzuriaga/codigos-python-de-captura-de-fotos-raspberry.git")
+    return
+
+dia=time.strftime("%d")
+print("Dia: "+dia)
+if (dia == "10" or dia == "25"):    
+    t = threading.Thread(target=actualizar)
+    t.start()    
+else:
+    print("Hoy no hay actualizaciones pendientes.")
+    print("Cada 10 y 25 de cada mes se consultaran actualizaciones")
 try:
     while True:
         fechaServidor= time.strftime("%y-%m-%d")
         fecha= time.strftime("%d-%m-%y")
-        dia=time.strftime("%d")
-        print(dia)
-        if (dia=="11"):
-            print("correcto")
-            vers="ok"
-        else:
-            vers="no"
+        
         fechatrama= time.strftime("%d%m%y")
         horatrama = time.strftime("%H%M%S")
         #var = raw_input("Introducir un Comando: ")
