@@ -22,12 +22,8 @@ url = 'http://179.50.12.201/transpubenza/sgcf/api/gps/trama'
 arduino = serial.Serial("/dev/ttyS0", 9600, timeout = 3.0)
 txt=''
 trama=''
-vers=''
 version="10-03-2020"
 print("revision: "+version)
-#comentario
-print("Reiniciando NTP service")
-os.system("sudo service ntp restart")
 
 def Envio(datos,url,intentos):
     cont = intentos
@@ -154,14 +150,6 @@ def actualizar():
     os.system("git pull https://github.com/pauzuriaga/codigos-python-de-captura-de-fotos-raspberry.git")
     return
 
-dia=time.strftime("%d")
-print("Dia: "+dia)
-if (dia == "10" or dia == "25"):    
-    t = threading.Thread(target=actualizar)
-    t.start()    
-else:
-    print("Hoy no hay actualizaciones pendientes.")
-    print("Cada 10 y 25 de cada mes se consultaran actualizaciones")
 try:
     while True:
         fechaServidor= time.strftime("%y-%m-%d")

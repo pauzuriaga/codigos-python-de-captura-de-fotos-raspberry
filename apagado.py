@@ -1,14 +1,35 @@
 #!/usr/bin/python2
-#revision: 26/08/2019
+#revision: 10-03-2020
 import time
 import RPi.GPIO as GPIO
 import os
+import threading
 monitor12VPin = 18
 backup12v= 06
 GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
 GPIO.setup(monitor12VPin, GPIO.IN)
 GPIO.setup(backup12v, GPIO.OUT)
 #GPIO.setvarnings(False)
+version="10-03-2020"
+print("revision: "+version)
+
+print("Reiniciando NTP service")
+os.system("sudo service ntp restart")
+
+def actualizar():
+    print("Actualizando codigos")
+    os.system("cd /transpubenza")
+    os.system("git pull https://github.com/pauzuriaga/codigos-python-de-captura-de-fotos-raspberry.git")
+    return
+
+dia=time.strftime("%d")
+print("Dia: "+dia)
+if (dia == "10" or dia == "25"):    
+    t = threading.Thread(target=actualizar)
+    t.start()    
+else:
+    print("Hoy no hay actualizaciones pendientes.")
+    print("Cada 10 y 25 de cada mes se consultaran actualizaciones")
 
 try:
     
