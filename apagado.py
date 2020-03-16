@@ -38,15 +38,15 @@ try:
             GPIO.output(backup12v, True)
             print("Switche encendido")
         else: # Ignition Key is turned off
-           time.sleep(28) # Sleep for 25 seconds to avoid accidental Ignition switch off and then check again
-           if not (GPIO.input(monitor12VPin)): # If still off, then proceed with shutting down the system.
-               print("Apagando...")
-               time.sleep(2)
-               os.system('shutdown -h now')
-               GPIO.output(backup12v, False)
-               GPIO.cleanup()
-               #time.sleep(45)
-               
+            print("Switche cerrado")
+            time.sleep(28) # Sleep for 25 seconds to avoid accidental Ignition switch off and then check again
+            if not (GPIO.input(monitor12VPin)): # If still off, then proceed with shutting down the system.
+                print("Apagando...")
+                time.sleep(2)
+                os.system('shutdown -h now')
+                GPIO.output(backup12v, False)
+                GPIO.cleanup()
+               #time.sleep(45)               
            
 except KeyboardInterrupt:
     GPIO.cleanup()
