@@ -28,7 +28,7 @@ if (dia == "10" or dia == "25"):
     t = threading.Thread(target=actualizar)
     t.start()    
 else:
-    print("Hoy no hay actualizaciones pendientes.")
+    print("Hoy no hay actualizaciones automaticas pendientes.")
     print("Cada 10 y 25 de cada mes se consultaran actualizaciones")
 
 try:
