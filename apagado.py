@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BCM) # Broadcom pin-numbering scheme
 GPIO.setup(monitor12VPin, GPIO.IN)
 GPIO.setup(backup12v, GPIO.OUT)
 #GPIO.setvarnings(False)
-version="10-03-2020"
+version="16-03-2020"
 print("revision: "+version)
 
 print("Reiniciando NTP service")
@@ -32,7 +32,6 @@ else:
     print("Cada 10 y 25 de cada mes se consultaran actualizaciones")
 
 try:
-    
     while True: #Keep Monitoring continuosly
         time.sleep(1) # check the GPIO pin every other second
         if (GPIO.input(monitor12VPin)):  #si esta encendido
