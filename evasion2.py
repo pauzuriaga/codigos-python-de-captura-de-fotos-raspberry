@@ -16,7 +16,7 @@ global camAtras
 global camAdelante
 global tipo
 #lo siguiente por la version hardware de raspberry
-if(orden==897):
+if(orden==897 or orden==899):
     camAtras = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.2:1.0-video-index0")
     camAdelante = cv2.VideoCapture("/dev/v4l/by-path/platform-3f980000.usb-usb-0:1.3:1.0-video-index0")
 else:
